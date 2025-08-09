@@ -21,7 +21,9 @@ public class Security {
                 .formLogin(AbstractHttpConfigurer::disable)
                 .httpBasic(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers(HttpMethod.POST, "/signup/host").permitAll()
+                        .requestMatchers(HttpMethod.POST,
+                                "/signup/host",
+                                "/signup/mate").permitAll()
                         .requestMatchers("/actuator/health").permitAll()
                         .anyRequest().authenticated()
                 );
