@@ -20,10 +20,6 @@ public class SignupController {
         return ResponseEntity.ok().build();
     }
 
-//    @GetMapping
-//    public ResponseEntity<String> login(@RequestBody HostRequestDto.Login login){
-//
-//    }
-
+//    @PostMapping("/mate")
 
 }
