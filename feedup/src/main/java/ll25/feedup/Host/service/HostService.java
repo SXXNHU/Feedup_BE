@@ -12,7 +12,7 @@ import org.springframework.stereotype.Service;
 public class HostService {
 
     private final HostRepository hostRepository;
-//    private final PasswordEncoder passwordEncoder;
+    private final PasswordEncoder passwordEncoder;
 
     public void signup(HostSignUpRequest signUp) {
         if(hostRepository.existsByLoginId(signUp.getLoginId())) {
