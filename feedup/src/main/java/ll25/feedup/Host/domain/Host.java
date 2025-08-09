@@ -33,7 +33,7 @@ public class Host {
 
     @Enumerated(EnumType.STRING)
     @Column(name = "category")
-    private HostCategory category;
+    private PlaceCategory category;
 
     @Column(name = "thumbnail")
     private String thumbnail;

@@ -1,10 +1,12 @@
 package ll25.feedup.Host.dto;
 
 import ll25.feedup.Host.domain.Host;
-import ll25.feedup.Host.domain.HostCategory;
+import ll25.feedup.Host.domain.PlaceCategory;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 
 @Getter
+@AllArgsConstructor
 public class HostSignUpRequest {
 
         private String loginId;
@@ -12,7 +14,7 @@ public class HostSignUpRequest {
         private String nickname;
         private String phone;
         private String address;
-        private HostCategory category;
+        private PlaceCategory category;
         private String thumbnail;
 
         public static Host toEntity(HostSignUpRequest hostDto){
