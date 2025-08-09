@@ -6,14 +6,14 @@ import lombok.Getter;
 
 @Getter
 @AllArgsConstructor
-public class MateSignUpRequest {
+public class MateSignupRequest {
 
     private String loginId;
     private String password;
     private String nickname;
     private String phone;
 
-    public static Mate toEntity(MateSignUpRequest mateDto){
+    public static Mate toEntity(MateSignupRequest mateDto){
         Mate mate = new Mate();
         mate.setLoginId(mateDto.getLoginId());
         mate.setPassword(mateDto.getPassword());

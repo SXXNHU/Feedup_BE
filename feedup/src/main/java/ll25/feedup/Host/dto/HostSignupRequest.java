@@ -7,7 +7,7 @@ import lombok.Getter;
 
 @Getter
 @AllArgsConstructor
-public class HostSignUpRequest {
+public class HostSignupRequest {
 
         private String loginId;
         private String password;
@@ -17,7 +17,7 @@ public class HostSignUpRequest {
         private PlaceCategory category;
         private String thumbnail;
 
-        public static Host toEntity(HostSignUpRequest hostDto){
+        public static Host toEntity(HostSignupRequest hostDto){
             Host host = new Host();
             host.setLoginId(hostDto.getLoginId());
             host.setPassword(hostDto.getPassword());
