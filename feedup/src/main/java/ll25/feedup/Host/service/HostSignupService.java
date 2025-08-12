@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 @RequiredArgsConstructor
-public class HostService {
+public class HostSignupService {
 
     private final HostRepository hostRepository;
 
