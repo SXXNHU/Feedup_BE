@@ -24,20 +24,41 @@ repositories {
 }
 
 dependencies {
-	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
-	implementation 'org.springframework.boot:spring-boot-starter-security'
-	implementation 'org.springframework.boot:spring-boot-starter-validation'
-	implementation 'org.springframework.boot:spring-boot-starter-web'
-	implementation 'org.springframework.session:spring-session-jdbc'
-	compileOnly 'org.projectlombok:lombok'
-	developmentOnly 'org.springframework.boot:spring-boot-devtools'
-	runtimeOnly 'com.mysql:mysql-connector-j'
-	annotationProcessor 'org.projectlombok:lombok'
-	testImplementation 'org.springframework.boot:spring-boot-starter-test'
-	testImplementation 'org.springframework.security:spring-security-test'
-	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+    // JPA, Web, Security
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.springframework.boot:spring-boot-starter-security'
 
-	implementation 'com.h2database:h2'
+    // Actuator
+    implementation 'org.springframework.boot:spring-boot-starter-actuator'
+
+    // Bean Validation
+    implementation 'org.springframework.boot:spring-boot-starter-validation'
+
+    // JWT
+    implementation 'io.jsonwebtoken:jjwt-api:0.11.5'
+    runtimeOnly  'io.jsonwebtoken:jjwt-impl:0.11.5'
+    runtimeOnly  'io.jsonwebtoken:jjwt-jackson:0.11.5'
+
+    // DB Driver (RDS)
+    runtimeOnly 'com.mysql:mysql-connector-j'
+
+    // Lombok
+    compileOnly 'org.projectlombok:lombok'
+    annotationProcessor 'org.projectlombok:lombok'
+
+    // application.yml 자동완성/검증
+    annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
+
+    // DevTools
+    developmentOnly 'org.springframework.boot:spring-boot-devtools'
+
+    // TEST
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    testImplementation 'org.springframework.security:spring-security-test'
+    testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+
+    testImplementation 'com.h2database:h2'
 }
 
 tasks.named('test') {
