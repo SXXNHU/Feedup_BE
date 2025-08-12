@@ -9,6 +9,7 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -26,16 +27,15 @@ public class SecurityConfig {
     SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
                 // 기본 인증 끄고, 완전 무상태 + JWT 필터 체인 구성
-                .csrf(csrf -> csrf.disable())
-                .formLogin(f -> f.disable())
-                .httpBasic(b -> b.disable())
+                .csrf(AbstractHttpConfigurer::disable)
+                .formLogin(AbstractHttpConfigurer::disable)
+                .httpBasic(AbstractHttpConfigurer::disable)
                 .sessionManagement(sm -> sm.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(auth -> auth
                         // 헬스체크 & 회원가입 & 로그인은 열어둠
                         .requestMatchers("/actuator/health").permitAll()
                         .requestMatchers(HttpMethod.POST, "/signup/**").permitAll()
-                        .requestMatchers(HttpMethod.POST, "/login/mate").permitAll()
-                        .requestMatchers(HttpMethod.POST, "/login/host").permitAll()
+                        .requestMatchers(HttpMethod.POST, "/login/**").permitAll()
                         // 나머지는 토큰 필수
                         .anyRequest().authenticated()
                 )
