@@ -32,11 +32,11 @@ public class SecurityConfig {
                 .httpBasic(AbstractHttpConfigurer::disable)
                 .sessionManagement(sm -> sm.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(auth -> auth
-                        // 헬스체크 & 회원가입 & 로그인은 열어둠
                         .requestMatchers("/actuator/health").permitAll()
                         .requestMatchers(HttpMethod.POST, "/signup/**").permitAll()
                         .requestMatchers(HttpMethod.POST, "/login/**").permitAll()
-                        // 나머지는 토큰 필수
+                        .requestMatchers(HttpMethod.POST, "/promotions").hasAuthority("ROLE_HOST")
+                        // 이외 토큰 필수
                         .anyRequest().authenticated()
                 )
                 // JWT 검증 필터를 UsernamePasswordAuthenticationFilter 앞에 삽입
