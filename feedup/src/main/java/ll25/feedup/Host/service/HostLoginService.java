@@ -17,7 +17,7 @@ public class HostLoginService {
 
     public Host authenticateHost(String loginId, String rawPassword) {
         Host host = hostRepository.findByLoginId(loginId)
-                .orElseThrow(() -> unauthorized());
+                .orElseThrow(this::unauthorized);
         if (!passwordEncoder.matches(rawPassword, host.getPassword())) { // host.getPassword()면 그걸로
             throw unauthorized();
         }
