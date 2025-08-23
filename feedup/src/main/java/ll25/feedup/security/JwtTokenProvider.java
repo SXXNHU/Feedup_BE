@@ -17,6 +17,9 @@ public class JwtTokenProvider {
     private final long accessExp;
     private final long refreshExp;
 
+    @Value("${security.jwt.access-valid-seconds:360000}")   // 100시간 기본
+    private long accessValidSeconds;
+
     public JwtTokenProvider(
             @Value("${jwt.secret}") String secret,
             @Value("${jwt.access-exp}") long accessExp,
@@ -62,5 +65,9 @@ public class JwtTokenProvider {
         Object r = Jwts.parserBuilder().setSigningKey(key).build()
                 .parseClaimsJws(token).getBody().get("role");
         return r == null ? null : r.toString();
+    }
+
+    public long getExpiresInSeconds() {
+        return accessValidSeconds;
     }
 }
