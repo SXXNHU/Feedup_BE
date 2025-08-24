@@ -36,18 +36,14 @@ public class GeneratedSns {
     @Column(name = "is_selected", nullable = false)
     private boolean selected;
 
-    @Column(name = "created_by", nullable = false)
-    private Long createdBy; // host_id
-
     protected GeneratedSns() {}
 
-    public GeneratedSns(Promotion promotion, Host host, SnsStyle style, String content, boolean selected, Long createdBy) {
+    public GeneratedSns(Promotion promotion, Host host, SnsStyle style, String content, boolean selected) {
         this.promotion = promotion;
         this.host = host;
         this.style = style;
         this.content = content;
         this.selected = selected;
-        this.createdBy = createdBy;
     }
 
     public void updateContent(String content) { this.content = content; }
