@@ -17,7 +17,7 @@ public class MateLoginService {
 
     public Mate authenticateMate(String loginId, String rawPassword) {
         Mate mate = mateRepository.findByLoginId(loginId)
-                .orElseThrow(() -> unauthorized());
+                .orElseThrow(this::unauthorized);
         if (!passwordEncoder.matches(rawPassword, mate.getPassword())) {
             throw unauthorized();
         }
