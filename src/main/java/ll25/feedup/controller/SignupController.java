@@ -1,9 +1,9 @@
 package ll25.feedup.controller;
 
 import ll25.feedup.Host.dto.HostSignupRequest;
-import ll25.feedup.Host.service.HostService;
+import ll25.feedup.Host.service.HostSignupService;
 import ll25.feedup.Mate.dto.MateSignupRequest;
-import ll25.feedup.Mate.service.MateService;
+import ll25.feedup.Mate.service.MateSignupService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -13,8 +13,8 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/signup")
 public class SignupController {
 
-    private final HostService hostService;
-    private final MateService mateService;
+    private final HostSignupService hostService;
+    private final MateSignupService mateService;
 
     @PostMapping("/host")
     public ResponseEntity<Void> HostSignup(@RequestBody HostSignupRequest request){
