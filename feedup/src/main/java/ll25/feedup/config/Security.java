@@ -1,6 +1,5 @@
 package ll25.feedup.config;
 
-import org.antlr.v4.runtime.ConsoleErrorListener;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
