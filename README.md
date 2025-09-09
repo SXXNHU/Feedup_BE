@@ -3,11 +3,9 @@
 맛있는 경험을 나누고, 콘텐츠로 이어주는 세대 연결 서비스  
 **“FeedUp” 자영업자와 대학생이 함께 만들어가는 SNS 프로모션 플랫폼**
 
-<img width="1920" height="1080" alt="서비스 소개" src="https://github.com/user-attachments/assets/24ec3c2f-f2de-40a1-819d-8136f2e56bd0" />
-<img width="1920" height="1080" alt="표지" src="https://github.com/user-attachments/assets/6776e1fc-4c11-4d1a-8869-fa15974b25eb" />
-<img width="1920" height="1080" alt="서비스 플로우" src="https://github.com/user-attachments/assets/2e5a8a40-73f2-4ee7-a72f-6d8f3cb14cd7" />
-
-
+<img width="1920" height="1080" alt="Image" src="https://github.com/user-attachments/assets/9de4a565-939b-4a89-a978-28e0acbcd603" />
+<img width="1920" height="1080" alt="Image" src="https://github.com/user-attachments/assets/c5d84498-d4b9-475b-b4e9-1bd635e39c35" />
+<img width="1920" height="1080" alt="Image" src="https://github.com/user-attachments/assets/44725119-dff2-445c-831c-84bd2a675102" />
 
 ---
 
