@@ -1,7 +1,7 @@
-package ll25.feedup.Host.service;
+package ll25.feedup.host.service;
 
-import ll25.feedup.Host.domain.Host;
-import ll25.feedup.Host.repository.HostRepository;
+import ll25.feedup.host.domain.Host;
+import ll25.feedup.host.repository.HostRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -18,7 +18,7 @@ public class HostLoginService {
     public Host authenticateHost(String loginId, String rawPassword) {
         Host host = hostRepository.findByLoginId(loginId)
                 .orElseThrow(this::unauthorized);
-        if (!passwordEncoder.matches(rawPassword, host.getPassword())) { // host.getPassword()면 그걸로
+        if (!passwordEncoder.matches(rawPassword, host.getPassword())) {
             throw unauthorized();
         }
         return host;
