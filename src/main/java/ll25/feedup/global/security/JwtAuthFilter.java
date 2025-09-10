@@ -1,4 +1,4 @@
-package ll25.feedup.security;
+package ll25.feedup.global.security;
 
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;

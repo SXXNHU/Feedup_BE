@@ -1,4 +1,4 @@
-package ll25.feedup.security;
+package ll25.feedup.global.security;
 
 import io.jsonwebtoken.*;
 import io.jsonwebtoken.security.Keys;
@@ -17,9 +17,6 @@ public class JwtTokenProvider {
     private final long accessExp;
     private final long refreshExp;
 
-    @Value("${security.jwt.access-valid-seconds:360000}")   // 100시간 기본
-    private long accessValidSeconds;
-
     public JwtTokenProvider(
             @Value("${jwt.secret}") String secret,
             @Value("${jwt.access-exp}") long accessExp,
@@ -33,8 +30,8 @@ public class JwtTokenProvider {
     public String createAccessToken(String subject, String role) {
         Date now = new Date();
         return Jwts.builder()
-                .setSubject(subject)                     // loginId
-                .addClaims(Map.of("role", role))         // ex) ROLE_MATE
+                .setSubject(subject)        // loginId
+                .addClaims(Map.of("role", role))
                 .setIssuedAt(now)
                 .setExpiration(new Date(now.getTime() + accessExp))
                 .signWith(key, SignatureAlgorithm.HS256)
@@ -65,9 +62,5 @@ public class JwtTokenProvider {
         Object r = Jwts.parserBuilder().setSigningKey(key).build()
                 .parseClaimsJws(token).getBody().get("role");
         return r == null ? null : r.toString();
-    }
-
-    public long getExpiresInSeconds() {
-        return accessValidSeconds;
     }
 }
