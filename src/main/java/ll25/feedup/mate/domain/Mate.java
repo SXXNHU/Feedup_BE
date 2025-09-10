@@ -1,4 +1,4 @@
-package ll25.feedup.Mate.domain;
+package ll25.feedup.mate.domain;
 
 import jakarta.persistence.*;
 import lombok.Getter;
