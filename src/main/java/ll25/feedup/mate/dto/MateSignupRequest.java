@@ -1,6 +1,6 @@
-package ll25.feedup.Mate.dto;
+package ll25.feedup.mate.dto;
 
-import ll25.feedup.Mate.domain.Mate;
+import ll25.feedup.mate.domain.Mate;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
