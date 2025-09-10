@@ -18,6 +18,7 @@ public class HostLoginController {
     private final HostLoginService hostLoginService;
     private final JwtTokenProvider jwt;
 
+    /** 자영업자 로그인 **/
     @PostMapping("/host")
     public ResponseEntity<?> login(@RequestBody HostLoginRequest request) {
         Host host = hostLoginService.authenticateHost(request.getLoginId(), request.getPassword());
