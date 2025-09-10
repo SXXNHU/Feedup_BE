@@ -3,6 +3,10 @@
 맛있는 경험을 나누고, 콘텐츠로 이어주는 세대 연결 서비스  
 **“FeedUp” 자영업자와 대학생이 함께 만들어가는 SNS 프로모션 플랫폼**
 
+<img width="1920" height="1080" alt="Image" src="https://github.com/user-attachments/assets/9de4a565-939b-4a89-a978-28e0acbcd603" />
+<img width="1920" height="1080" alt="Image" src="https://github.com/user-attachments/assets/c5d84498-d4b9-475b-b4e9-1bd635e39c35" />
+<img width="1920" height="1080" alt="Image" src="https://github.com/user-attachments/assets/44725119-dff2-445c-831c-84bd2a675102" />
+
 ---
 
 ## 개요
@@ -20,14 +24,14 @@
 
 ### 자영업자 (Host)
 - 가게 정보 및 계좌 등록
-- 프로모션 생성 (요금제 선택)
+- 요금제 선택 후 프로모션 생성 
 - 리뷰 검토 및 신고
-- AI 콘텐츠 미리보기 확인 및 확정
+- OpenAI 기반 인스타그램 피드 생성
 
 ### 대학생 (Mate)
-- 프로모션 신청 및 참여
-- 음식 체험 후 리뷰 작성
-- 리뷰 승인 + 조건 만족 시 1만원 페이백
+- 프로모션 신청
+- 프로모션 참여 후 리뷰 작성
+- 리뷰 승인 및 조건 만족 시 10,000KRW payback
 
 ---
 
@@ -38,7 +42,7 @@
 - **DB**: MySQL (RDS)
 - **빌드툴**: Gradle
 - **개발환경**: IntelliJ IDEA
-- **버전관리**: GitHub (멀티 remote 설정으로 잔디 연동 중)
+- **버전관리**: GitHub 
 
 ---
 
