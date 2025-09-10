@@ -1,6 +1,6 @@
-package ll25.feedup.Mate.repository;
+package ll25.feedup.mate.repository;
 
-import ll25.feedup.Mate.domain.Mate;
+import ll25.feedup.mate.domain.Mate;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;

@@ -1,4 +1,4 @@
-package ll25.feedup.Host.domain;
+package ll25.feedup.host.domain;
 
 import jakarta.persistence.*;
 import lombok.*;

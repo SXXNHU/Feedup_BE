@@ -1,7 +1,7 @@
-package ll25.feedup.Host.dto;
+package ll25.feedup.host.dto;
 
-import ll25.feedup.Host.domain.Host;
-import ll25.feedup.Host.domain.PlaceCategory;
+import ll25.feedup.host.domain.Host;
+import ll25.feedup.host.domain.PlaceCategory;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 

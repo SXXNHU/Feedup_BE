@@ -4,9 +4,6 @@ plugins {
 	id 'io.spring.dependency-management' version '1.1.7'
 }
 
-group = 'll25'
-version = '0.0.1-SNAPSHOT'
-
 java {
 	toolchain {
 		languageVersion = JavaLanguageVersion.of(21)
@@ -36,6 +33,9 @@ dependencies {
     // Bean Validation
     implementation 'org.springframework.boot:spring-boot-starter-validation'
 
+    //h2
+    runtimeOnly 'com.h2database:h2'
+
     // JWT
     implementation 'io.jsonwebtoken:jjwt-api:0.11.5'
     runtimeOnly  'io.jsonwebtoken:jjwt-impl:0.11.5'
@@ -48,11 +48,15 @@ dependencies {
     compileOnly 'org.projectlombok:lombok'
     annotationProcessor 'org.projectlombok:lombok'
 
-    // application.yml 자동완성/검증
+    // yml 자동완성
     annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
 
     // DevTools
     developmentOnly 'org.springframework.boot:spring-boot-devtools'
+
+    //S3
+    implementation 'software.amazon.awssdk:s3:2.25.+'
+    implementation("commons-io:commons-io:2.15.1")
 
     // TEST
     testImplementation 'org.springframework.boot:spring-boot-starter-test'

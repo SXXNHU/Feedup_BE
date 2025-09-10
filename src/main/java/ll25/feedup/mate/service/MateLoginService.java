@@ -1,12 +1,12 @@
-package ll25.feedup.Mate.service;
+package ll25.feedup.mate.service;
 
-import ll25.feedup.Mate.domain.Mate;
-import ll25.feedup.Mate.repository.MateRepository;
+import ll25.feedup.global.exception.BusinessException;
+import ll25.feedup.global.exception.ExceptionCode;
+import ll25.feedup.mate.domain.Mate;
+import ll25.feedup.mate.repository.MateRepository;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.HttpStatus;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-import org.springframework.web.server.ResponseStatusException;
 
 @Service
 @RequiredArgsConstructor
@@ -24,7 +24,7 @@ public class MateLoginService {
         return mate;
     }
 
-    private ResponseStatusException unauthorized() {
-        return new ResponseStatusException(HttpStatus.UNAUTHORIZED, "아이디 또는 비밀번호가 올바르지 않습니다.");
+    private BusinessException unauthorized() {
+        return new BusinessException(ExceptionCode.UNAUTHORIZED, "아이디 또는 비밀번호가 올바르지 않습니다.");
     }
 }
