@@ -1,20 +1,30 @@
-package ll25.feedup.Promotion.repository;
+package ll25.feedup.promotion.repository;
 
-import ll25.feedup.Promotion.domain.Promotion;
+import ll25.feedup.promotion.domain.Promotion;
+import ll25.feedup.promotion.domain.PromotionStatus;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.repository.query.Param;
+import org.springframework.data.jpa.repository.EntityGraph;
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.Optional;
 
 @Repository
-public interface PromotionRepository extends org.springframework.data.jpa.repository.JpaRepository<Promotion, Long> {
+public interface PromotionRepository extends JpaRepository<Promotion, Long> {
 
-    Page<Promotion> findByHost_Id(Long hostId, Pageable pageable);
+    @EntityGraph(attributePaths = {"host"})
+    Page<Promotion> findByHost_IdOrderByCreatedAtDesc(Long hostId, Pageable pageable);
 
-    @Query("select p from Promotion p join fetch p.host where p.id = :id")
-    Optional<Promotion> findWithHostById(@Param("id") Long id);
+    // 오픈 리스트
+    @EntityGraph(attributePaths = {"host"})
+    Page<Promotion> findByStatusAndEndDateGreaterThanEqualOrderByStartDateAsc(
+            PromotionStatus status, java.time.LocalDateTime now, Pageable pageable);
 
+    // 완료 리스트
+    @EntityGraph(attributePaths = {"host"})
+    Page<Promotion> findByStatusOrderByEndDateDesc(PromotionStatus status, Pageable pageable);
+
+    @EntityGraph(attributePaths = {"host"})
+    Optional<Promotion> findWithHostById(Long id);
 }

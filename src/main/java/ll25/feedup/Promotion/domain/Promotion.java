@@ -1,11 +1,10 @@
-package ll25.feedup.Promotion.domain;
+package ll25.feedup.promotion.domain;
 
 import jakarta.persistence.*;
-import ll25.feedup.Host.domain.Host;
+import ll25.feedup.host.domain.Host;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.springframework.data.annotation.CreatedDate;
 
 import java.time.LocalDateTime;
 
@@ -44,7 +43,6 @@ public class Promotion {
     @Column(name = "end_date", nullable = false)
     private LocalDateTime endDate;
 
-    @CreatedDate
     @Column(name = "created_at", updatable = false, nullable = false)
     private LocalDateTime createdAt;
 }
