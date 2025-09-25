@@ -1,12 +1,12 @@
-package ll25.feedup.Promotion.dto;
+package ll25.feedup.promotion.dto;
 
-import ll25.feedup.Host.domain.PlaceCategory;
-import ll25.feedup.Promotion.domain.Promotion;
-import ll25.feedup.Promotion.domain.PromotionStatus;
+import ll25.feedup.host.domain.PlaceCategory;
+import ll25.feedup.promotion.domain.Promotion;
+import ll25.feedup.promotion.domain.PromotionStatus;
 import lombok.Getter;
 
 import java.time.format.DateTimeFormatter;
-import static ll25.feedup.util.DateFormatUtil.formatCreatedAt;
+import static ll25.feedup.global.util.DateFormatUtil.formatCreatedAt;
 
 @Getter
 public class PromotionItem {

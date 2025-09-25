@@ -44,13 +44,13 @@ public class PromotionService {
         return PromotionCreateResponse.from(saved, plan);
     }
 
-    /** 2) 로그인한 호스트의 전체 프로모션(상태 무관) **/
-    public PromotionListResponse getHostPromotionsByLoginId(final String loginId, final Pageable pageable) {
+    /** 로그인한 호스트의 전체 프로모션(상태 무관) **/
+    @Transactional(readOnly = true)
+    public PromotionListResponse getHostPromotionsByLoginId(String loginId, Pageable pageable) {
         Host host = hostRepository.findByLoginId(loginId)
-                .orElseThrow(() -> new ResponseStatusException(HttpStatus.UNAUTHORIZED, "로그인이 필요합니다."));
+                .orElseThrow(() -> new BusinessException(ExceptionCode.UNAUTHORIZED));
 
         Page<Promotion> page = promotionRepository.findByHost_IdOrderByCreatedAtDesc(host.getId(), pageable);
-
         return PromotionListResponse.of(
                 page.getContent().stream().map(PromotionItem::from).toList(),
                 page.hasNext()
