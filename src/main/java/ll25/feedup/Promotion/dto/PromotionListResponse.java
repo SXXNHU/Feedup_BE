@@ -1,4 +1,4 @@
-package ll25.feedup.Promotion.dto;
+package ll25.feedup.promotion.dto;
 
 import lombok.Getter;
 
@@ -19,4 +19,7 @@ public class PromotionListResponse {
         return new PromotionListResponse(items, hasNext);
     }
 
+    public static PromotionListResponse empty() {
+        return new PromotionListResponse(List.of(), false);
+    }
 }

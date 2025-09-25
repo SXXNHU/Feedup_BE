@@ -1,22 +1,26 @@
-package ll25.feedup.Promotion.service;
+package ll25.feedup.promotion.service;
 
-import ll25.feedup.Host.domain.Host;
-import ll25.feedup.Host.repository.HostRepository;
-import ll25.feedup.Plan.domain.Plan;
-import ll25.feedup.Plan.repository.PlanRepository;
-import ll25.feedup.Promotion.domain.Promotion;
-import ll25.feedup.Promotion.domain.PromotionStatus;
-import ll25.feedup.Promotion.dto.*;
-import ll25.feedup.Promotion.repository.PromotionRepository;
+import ll25.feedup.global.exception.BusinessException;
+import ll25.feedup.global.exception.ExceptionCode;
+import ll25.feedup.host.domain.Host;
+import ll25.feedup.host.repository.HostRepository;
+import ll25.feedup.plan.domain.Plan;
+import ll25.feedup.plan.repository.PlanRepository;
+import ll25.feedup.promotion.domain.Promotion;
+import ll25.feedup.promotion.domain.PromotionStatus;
+import ll25.feedup.promotion.dto.PromotionCreateRequest;
+import ll25.feedup.promotion.dto.PromotionCreateResponse;
+import ll25.feedup.promotion.dto.PromotionDetailResponse;
+import ll25.feedup.promotion.dto.PromotionItem;
+import ll25.feedup.promotion.dto.PromotionListResponse;
+import ll25.feedup.promotion.repository.PromotionRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.server.ResponseStatusException;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.ZoneId;
 
 @Service
@@ -27,28 +31,26 @@ public class PromotionService {
     private final HostRepository hostRepository;
     private final PlanRepository planRepository;
 
-    /** 1) 프로모션 생성 **/
+    /** 프로모션 생성 **/
     @Transactional
     public PromotionCreateResponse createPromotion(String loginId, PromotionCreateRequest request) {
-        // Host 로그인 아이디로 조회 (토큰 subject = loginId)
         Host host = hostRepository.findByLoginId(loginId)
-                .orElseThrow(() -> notFound("Host(loginId)", loginId));
-
+                .orElseThrow(() -> new BusinessException(ExceptionCode.UNAUTHORIZED));
         Plan plan = planRepository.findById(request.getPlanId())
-                .orElseThrow(() -> notFound("Plan", request.getPlanId()));
+                .orElseThrow(() -> new BusinessException(ExceptionCode.PLAN_NOT_FOUND));
 
         Promotion promotion = request.toEntity(host, plan);
         Promotion saved = promotionRepository.save(promotion);
         return PromotionCreateResponse.from(saved, plan);
     }
 
-    /** 2) 로그인한 호스트의 전체 프로모션(상태 무관) **/
-    public PromotionListResponse getHostPromotionsByLoginId(final String loginId, final Pageable pageable) {
+    /** 로그인한 호스트의 전체 프로모션(상태 무관) **/
+    @Transactional(readOnly = true)
+    public PromotionListResponse getHostPromotionsByLoginId(String loginId, Pageable pageable) {
         Host host = hostRepository.findByLoginId(loginId)
-                .orElseThrow(() -> new ResponseStatusException(HttpStatus.UNAUTHORIZED, "로그인이 필요합니다."));
+                .orElseThrow(() -> new BusinessException(ExceptionCode.UNAUTHORIZED));
 
         Page<Promotion> page = promotionRepository.findByHost_IdOrderByCreatedAtDesc(host.getId(), pageable);
-
         return PromotionListResponse.of(
                 page.getContent().stream().map(PromotionItem::from).toList(),
                 page.hasNext()

@@ -1,7 +1,7 @@
-package ll25.feedup.Promotion.dto;
+package ll25.feedup.promotion.dto;
 
-import ll25.feedup.Plan.domain.Plan;
-import ll25.feedup.Promotion.domain.Promotion;
+import ll25.feedup.plan.domain.Plan;
+import ll25.feedup.promotion.domain.Promotion;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
@@ -27,8 +27,8 @@ public class PromotionCreateResponse {
 
     public static PromotionCreateResponse from(Promotion promotion, Plan plan) {
         return new PromotionCreateResponse(
-                "PROMO_" + promotion.getId(),
-                "pending_payment",
+                String.valueOf(promotion.getId()),
+                promotion.getStatus().name().toLowerCase(),
                 PlanInfo.from(plan)
         );
     }

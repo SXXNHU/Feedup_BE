@@ -1,9 +1,9 @@
-package ll25.feedup.Promotion.dto;
+package ll25.feedup.promotion.dto;
 
-import ll25.feedup.Host.domain.Host;
-import ll25.feedup.Plan.domain.Plan;
-import ll25.feedup.Promotion.domain.Promotion;
-import ll25.feedup.Promotion.domain.PromotionStatus;
+import ll25.feedup.host.domain.Host;
+import ll25.feedup.plan.domain.Plan;
+import ll25.feedup.promotion.domain.Promotion;
+import ll25.feedup.promotion.domain.PromotionStatus;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
