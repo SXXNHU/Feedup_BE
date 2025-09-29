@@ -1,4 +1,4 @@
-package ll25.feedup.Host.domain;
+package ll25.feedup.host.domain;
 
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
