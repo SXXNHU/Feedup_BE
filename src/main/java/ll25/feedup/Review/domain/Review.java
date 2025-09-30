@@ -1,10 +1,10 @@
-package ll25.feedup.Review.domain;
+package ll25.feedup.review.domain;
 
 import jakarta.persistence.*;
-import ll25.feedup.Mate.domain.Mate;
-import ll25.feedup.Promotion.domain.Promotion;
-import ll25.feedup.Review.dto.ListStringJsonConverter;
-import ll25.feedup.Review.dto.ReviewCreateRequest;
+import ll25.feedup.mate.domain.Mate;
+import ll25.feedup.promotion.domain.Promotion;
+import ll25.feedup.review.dto.ListStringJsonConverter;
+import ll25.feedup.review.dto.ReviewCreateRequest;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
