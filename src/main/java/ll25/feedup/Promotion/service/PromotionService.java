@@ -57,32 +57,36 @@ public class PromotionService {
         );
     }
 
-
-    /** 3) 전체 오픈 프로모션: ACTIVE && endDate(날짜) ≥ 오늘(KST) */
+    /** 전체 오픈 프로모션: ACTIVE && endDate ≥ 현재(KST) **/
+    @Transactional(readOnly = true)
     public PromotionListResponse getOpenPromotions(Pageable pageable) {
-        LocalDate today = LocalDate.now(ZoneId.of("Asia/Seoul"));
+        LocalDateTime nowKst = LocalDateTime.now(ZoneId.of("Asia/Seoul"));
         Page<Promotion> page = promotionRepository
-                .findByPromotionStatusAndEndDateOnlyGreaterThanEqualOrderByStartDateAsc(
-                        PromotionStatus.ACTIVE, today, pageable);
-        return PromotionListResponse.of(page.getContent().stream().map(PromotionItem::from).toList(), page.hasNext());
+                .findByStatusAndEndDateGreaterThanEqualOrderByStartDateAsc(
+                        PromotionStatus.ACTIVE, nowKst, pageable
+                );
+        return PromotionListResponse.of(
+                page.getContent().stream().map(PromotionItem::from).toList(),
+                page.hasNext()
+        );
     }
 
-    /** 4) 전체 완료된 프로모션: COMPLETED */
+    /** 전체 완료된 프로모션: COMPLETED **/
+    @Transactional(readOnly = true)
     public PromotionListResponse getCompletedPromotions(Pageable pageable) {
         Page<Promotion> page = promotionRepository
-                .findByPromotionStatusOrderByEndDateDesc(
-                        PromotionStatus.COMPLETED, pageable);
-        return PromotionListResponse.of(page.getContent().stream().map(PromotionItem::from).toList(), page.hasNext());
+                .findByStatusOrderByEndDateDesc(PromotionStatus.COMPLETED, pageable);
+        return PromotionListResponse.of(
+                page.getContent().stream().map(PromotionItem::from).toList(),
+                page.hasNext()
+        );
     }
 
-    /** 5) 단건 상세 */
-    public PromotionDetailResponse getPromotionDetail(final Long promotionId) {
+    /** 프로모션 단건 상세 **/
+    @Transactional(readOnly = true)
+    public PromotionDetailResponse getPromotionDetail(Long promotionId) {
         Promotion promotion = promotionRepository.findWithHostById(promotionId)
-                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Promotion not found: " + promotionId));
+                .orElseThrow(() -> new BusinessException(ExceptionCode.PROMO_NOT_FOUND));
         return PromotionDetailResponse.from(promotion);
-    }
-
-    private ResponseStatusException notFound(String target, Object id) {
-        return new ResponseStatusException(HttpStatus.NOT_FOUND, target + " not found: " + id);
     }
 }
