@@ -1,6 +1,6 @@
-package ll25.feedup.config;
+package ll25.feedup.global.config;
 
-import ll25.feedup.security.JwtAuthFilter;
+import ll25.feedup.global.security.JwtAuthFilter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -26,7 +26,6 @@ public class SecurityConfig {
     @Bean
     SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
-                // 기본 인증 끄고, 완전 무상태 + JWT 필터 체인 구성
                 .csrf(AbstractHttpConfigurer::disable)
                 .formLogin(AbstractHttpConfigurer::disable)
                 .httpBasic(AbstractHttpConfigurer::disable)
@@ -39,7 +38,6 @@ public class SecurityConfig {
                         // 이외 토큰 필수
                         .anyRequest().authenticated()
                 )
-                // JWT 검증 필터를 UsernamePasswordAuthenticationFilter 앞에 삽입
                 .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class);
 
         return http.build();
@@ -50,7 +48,6 @@ public class SecurityConfig {
         return new BCryptPasswordEncoder();
     }
 
-    // AuthenticationManager 필요 시 주입 받을 수 있게 노출
     @Bean
     AuthenticationManager authenticationManager(AuthenticationConfiguration cfg) throws Exception {
         return cfg.getAuthenticationManager();
