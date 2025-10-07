@@ -1,4 +1,4 @@
-package ll25.feedup.Review.dto;
+package ll25.feedup.review.dto;
 
 import jakarta.validation.constraints.DecimalMax;
 import jakarta.validation.constraints.DecimalMin;
