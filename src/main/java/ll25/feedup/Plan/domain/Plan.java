@@ -1,4 +1,4 @@
-package ll25.feedup.Plan.domain;
+package ll25.feedup.plan.domain;
 
 import jakarta.persistence.*;
 import lombok.Getter;
