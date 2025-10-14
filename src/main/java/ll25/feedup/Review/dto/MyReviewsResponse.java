@@ -1,24 +1,28 @@
-package ll25.feedup.Review.dto;
+package ll25.feedup.review.dto;
 
-import ll25.feedup.Review.domain.Review;
-import lombok.*;
+import ll25.feedup.review.domain.Review;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
 import org.springframework.data.domain.Page;
 
 import java.util.List;
 
-@Getter @Setter
-@NoArgsConstructor @AllArgsConstructor
-public class MyReviewsResponse {
-    private List<MyReviewItem> items;
-    private boolean hasNext;
-    private int nextOffset;
-
-    public static MyReviewsResponse from(Page<Review> page, int offset, int limit) {
-        List<MyReviewItem> items = page.getContent().stream()
+@Getter
+@AllArgsConstructor
+public record MyReviewsResponse(List<MyReviewItem> items, boolean hasNext, int page, int size, int totalPages,
+                                long totalElements) {
+    public static MyReviewsResponse from(Page<Review> pageObj) {
+        List<MyReviewItem> items = pageObj.getContent().stream()
                 .map(MyReviewItem::from)
                 .toList();
-        boolean hasNext = page.hasNext();
-        int nextOffset = hasNext ? offset + limit : offset;
-        return new MyReviewsResponse(items, hasNext, nextOffset);
+
+        return new MyReviewsResponse(
+                items,
+                pageObj.hasNext(),
+                pageObj.getNumber(),
+                pageObj.getSize(),
+                pageObj.getTotalPages(),
+                pageObj.getTotalElements()
+        );
     }
 }
