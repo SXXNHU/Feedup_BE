@@ -1,6 +1,6 @@
-package ll25.feedup.Review.dto;
+package ll25.feedup.review.dto;
 
-import ll25.feedup.Review.domain.Review;
+import ll25.feedup.review.domain.Review;
 import lombok.*;
 
 import java.util.List;
