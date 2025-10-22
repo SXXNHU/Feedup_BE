@@ -1,8 +1,8 @@
-package ll25.feedup.GeneratedSns.domain;
+package ll25.feedup.generatedSns.domain;
 
 import jakarta.persistence.*;
-import ll25.feedup.Host.domain.Host;
-import ll25.feedup.Promotion.domain.Promotion;
+import ll25.feedup.host.domain.Host;
+import ll25.feedup.promotion.domain.Promotion;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
