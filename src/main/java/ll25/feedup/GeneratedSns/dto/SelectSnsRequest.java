@@ -1,4 +1,4 @@
-package ll25.feedup.GeneratedSns.dto;
+package ll25.feedup.generatedSns.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

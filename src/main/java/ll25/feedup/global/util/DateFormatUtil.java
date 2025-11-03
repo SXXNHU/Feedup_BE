@@ -1,4 +1,4 @@
-package ll25.feedup.util;
+package ll25.feedup.global.util;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;

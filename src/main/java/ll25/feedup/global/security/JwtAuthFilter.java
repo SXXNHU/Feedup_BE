@@ -29,11 +29,16 @@ public class JwtAuthFilter extends OncePerRequestFilter {
     protected boolean shouldNotFilter(HttpServletRequest req) {
         String uri = req.getRequestURI();
         String m = req.getMethod();
-        return "OPTIONS".equalsIgnoreCase(m)
+        log.info("JwtAuthFilter - URI: {}, Method: {}", uri, m);
+        
+        boolean skip = "OPTIONS".equalsIgnoreCase(m)
                 || ANT.match("/error", uri)
                 || ANT.match("/actuator/health/**", uri)
                 || ANT.match("/api/login/**", uri)
                 || ANT.match("/api/signup/**", uri);
+        
+        log.info("shouldNotFilter result: {}", skip);
+        return skip;
     }
 
     @Override
